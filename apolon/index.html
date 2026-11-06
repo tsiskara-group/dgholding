@@ -8,6 +8,7 @@
 <meta name="description" content="Investment Project Manager at DG Group. Strategic investments, retail, wholesale and logistics across the Caucasus and Central Asia.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#162433">
+<meta name="color-scheme" content="light dark">
 <meta name="format-detection" content="telephone=no">
 <link rel="canonical" href="https://tsiskara-group.github.io/dgholding/apolon/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -35,7 +36,8 @@
 --serif:"Instrument Serif","Iowan Old Style","Times New Roman",serif;
 --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 --gutter:20px;
-color-scheme:light;
+/* Declares dark support so phone browsers in dark mode do not recolor the page; every colour below is explicit, so it looks the same in both modes. */
+color-scheme:light dark;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;background:var(--navy-deep)}
@@ -70,6 +72,10 @@ h1{margin:12px 0 0;font:400 clamp(41px,11.2vw,84px)/1 var(--serif);letter-spacin
 .amp{font-style:italic;color:var(--red);padding:0 .02em}
 .lead{color:rgba(255,255,255,.74);font-size:15.5px;line-height:1.65;max-width:34em;margin-top:22px}
 /* Business card */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-copy{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.card{animation:rise .7s cubic-bezier(.2,.7,.2,1) .12s both}
+.lead{animation:rise .7s cubic-bezier(.2,.7,.2,1) .22s both}
 .card{position:relative;margin-top:26px;background:#fff;color:var(--ink);border-radius:26px;padding:20px 18px 18px;box-shadow:0 34px 80px -20px rgba(2,8,18,.7),0 0 0 1px rgba(255,255,255,.06)}
 .card::before{content:"";position:absolute;left:24px;right:24px;top:0;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,var(--red),#ff5a60)}
 .card-top{display:flex;gap:14px;align-items:center}
@@ -247,7 +253,7 @@ radial-gradient(60% 50% at 100% 100%,rgba(237,28,36,.14) 0%,rgba(237,28,36,0) 60
 .dock .sq{width:50px;height:50px;flex:none;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.08);color:#fff;text-decoration:none}
 .dock .sq .ico{width:22px;height:22px}
 /* Reveal */
-.js [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
+.js [data-reveal]{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
 .js [data-reveal].in{opacity:1;transform:none}
 .shot [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
 .shot .r-main,.shot .r-branch{stroke-dashoffset:0!important;animation:none!important}
@@ -308,8 +314,9 @@ html{scroll-behavior:auto}
 .js [data-reveal]{opacity:1;transform:none;transition:none}
 .js .r-main,.js .r-branch{stroke-dashoffset:0;animation:none!important}
 .js .r-sea{opacity:1;transition:none}
-.hq-pulse,.cue .ico{animation:none}
+.hq-pulse,.cue .ico,.hero-copy,.card,.lead{animation:none}
 }
+@media (prefers-color-scheme:dark){html{background:var(--navy-deep)}body{background:#fff;color:var(--text)}}
 </style>
 </head>
 <body>
@@ -320,11 +327,11 @@ html{scroll-behavior:auto}
       <span class="place">Tbilisi · Georgia</span>
     </div>
     <div class="hero-grid">
-      <div class="hero-copy" data-reveal>
+      <div class="hero-copy">
         <p class="kicker"><span class="k1">Strategic Investments</span><i class="k-sep"></i><span>Retail<i></i>Wholesale<i></i>Logistics</span></p>
         <h1>Your Gateway to the Caucasus <span class="amp">&amp;</span> Central Asia</h1>
       </div>
-<aside class="card" id="contact" aria-label="Contact card" data-reveal style="--d:120ms">
+<aside class="card" id="contact" aria-label="Contact card">
   <div class="card-top">
     <div class="avatar" aria-hidden="true">AS</div>
     <div>
@@ -346,7 +353,7 @@ html{scroll-behavior:auto}
     <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg><a href="https://www.google.com/maps/search/?api=1&query=158%20Davit%20Aghmashenebeli%20Avenue%2C%20Tbilisi%200112%2C%20Georgia" target="_blank" rel="noopener">158 Aghmashenebeli Ave, Tbilisi</a></li>
   </ul>
 </aside>
-      <p class="lead" data-reveal style="--d:200ms">Connecting international businesses with high potential emerging markets through proven expertise, established infrastructure, and strategic partnerships.</p>
+      <p class="lead">Connecting international businesses with high potential emerging markets through proven expertise, established infrastructure, and strategic partnerships.</p>
     </div>
     <a class="cue" href="#about">Discover DG Group<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" /></svg></a>
   </div>
@@ -591,7 +598,7 @@ html{scroll-behavior:auto}
       [].forEach.call(t.querySelectorAll('[data-count]'), count);
       io.unobserve(t);
     });
-  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.12 });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
   reveal.forEach(function (el) { io.observe(el); });
   if (map) io.observe(map);
 
