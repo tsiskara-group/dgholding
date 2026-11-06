@@ -1,0 +1,4 @@
+/*.vcf
+  Content-Type: text/vcard; charset=utf-8
+/assets/*
+  Cache-Control: public, max-age=604800

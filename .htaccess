@@ -1,0 +1,3 @@
+AddType text/vcard .vcf
+AddCharset UTF-8 .vcf
+DirectorySlash On
