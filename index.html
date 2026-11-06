@@ -707,14 +707,20 @@ html{scroll-behavior:auto}
     if (!fw || !fm) return;
     var range = fm.getBoundingClientRect().width - fw.clientWidth;
     if (range <= 1) { fm.style.transform = ''; return; }
-    var p = 0.5;
+    // Three stops: Europe in view, Tbilisi centred (map in the middle of the screen), Asia in view.
+    var mw = fm.getBoundingClientRect().width, ww = fw.clientWidth;
+    var hub = fm.querySelector('.f-hcore'), vb = fm.viewBox && fm.viewBox.baseVal;
+    var hubX = hub && vb && vb.width ? (+hub.getAttribute('cx') / vb.width) * mw : mw / 2;
+    var mid = Math.max(0, Math.min(range, hubX - ww / 2));
+    var t = 0.5;
     if (!reduce && !d.documentElement.classList.contains('shot')) {
       var r = fw.getBoundingClientRect(), vh = window.innerHeight || 700;
-      p = (vh * 0.9 - (r.top + r.height / 2)) / (vh * 0.65);
-      p = Math.max(0, Math.min(1, p));
-      p = p * p * (3 - 2 * p);
+      t = (vh * 0.92 - (r.top + r.height / 2)) / (vh * 0.84);
+      t = Math.max(0, Math.min(1, t));
     }
-    fm.style.transform = 'translate3d(' + (-p * range).toFixed(1) + 'px,0,0)';
+    var e = function (x) { return x * x * (3 - 2 * x); };
+    var tx = t < 0.5 ? mid * e(t / 0.5) : mid + (range - mid) * e((t - 0.5) / 0.5);
+    fm.style.transform = 'translate3d(' + (-tx).toFixed(1) + 'px,0,0)';
   }
   window.__pan = pan;
   window.addEventListener('scroll', function () {
